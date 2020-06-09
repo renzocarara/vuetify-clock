@@ -23,6 +23,7 @@ const routes = [
 
 const router = new VueRouter({
     mode: "history",
+    // BASE_URL - corresponds to the publicPath option in vue.config.js and is the base path your app is deployed at.
     base: process.env.BASE_URL,
     routes,
 });
