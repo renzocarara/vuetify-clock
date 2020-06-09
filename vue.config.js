@@ -1,5 +1,5 @@
 module.exports = {
     // transpileDependencies: ["vuetify"],
-    transpileDependencies: [/node_modules[/\\\\]vuetify[/\\\\]/],
+    transpileDependencies: ["\\vuetify\\"],
     publicPath: "/vuetify-clock/",
 };
