@@ -2,7 +2,9 @@
     <v-app> <!-- NOTA: il tag "v-app" è OBBLIGATORIO e deve racchiudere tutti gli altri componenti di Vuetify -->
         <AppBar/> 
         <v-content>
-            <router-view/>
+            <transition name="fade" mode="out-in" appear>
+                <router-view/>
+            </transition>
         </v-content>
         <MyFooter/>
     </v-app>
