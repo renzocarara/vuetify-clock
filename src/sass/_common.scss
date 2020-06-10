@@ -11,7 +11,7 @@ html {
 }
 
 .hours {
-    color: $primary-color;
+    color: $secondary-color;
 }
 .minutes {
     color: red;
@@ -26,7 +26,8 @@ html {
 .time-in-numbers {
     display: inline-block;
     padding: 2px 3px;
-    min-width: 72px;
+    min-width: 80px;
+    margin-left: 73px;
 }
 
 .my-button {
@@ -44,6 +45,7 @@ html {
 .my-link {
     color: $white-color;
     text-decoration: none;
+    transition: all 0.5s ease-out;
 
     &:hover {
         color: $primary-color;
@@ -70,26 +72,6 @@ html {
 }
 .fade-leave-to {
     opacity: 0;
-}
-
-// --------------------------- ANIMATIONs -----------------------------------
-.bounce-enter-active {
-    animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-    animation: bounce-in 0.5s;
-}
-@keyframes bounce-in {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
 }
 
 @media screen and (max-width: 768px) {

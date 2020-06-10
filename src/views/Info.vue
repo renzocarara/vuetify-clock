@@ -9,7 +9,8 @@
             contain
           />
 
-        <h4>Questa è un mero esercizio sull'utilizzo di <span class="vuetify-text">Vuetify</span>.</h4>
+        <h4>Questa è un mero esercizio sull'utilizzo di
+           <a href="https://vuetifyjs.com/en/" target="_blank" class="vuetify-text">Vuetify</a>.</h4>
             <p>L'algoritmo traduce l'ora espressa in numeri in una stringa di testo in lingua inglese.</p>
             <p>L'applicazione si appoggia su di uno scaffold di Vue CLI 4.x ed utilizza minimamente vue-router.</p>
         </v-col>
@@ -38,11 +39,13 @@ export default {
 <style lang="scss" scoped>
 @import "../sass/app.scss";
 
-// .info {
-//     background-image: #{$bcg-app-color};
-// }
 .vuetify-text {
     font-weight: bold;
     color: red;
+    text-decoration: none;
+    &:hover {
+        color: $secondary-color;
+        transition: 0.5s ease-out;
+    }
 }
 </style>

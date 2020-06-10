@@ -9,9 +9,9 @@
           />
         </v-col>
 
-        <v-col cols="12" class="">
+        <v-col cols="12" class=" blue--text">
           <h1 class="font-weight-bold">Welcome to Vuetify-Clock</h1>
-          <p class="subheading font-weight-regular mb-0">Get the time in words</p>
+          <p class="subheading font-weight-bold mb-0 red--text">Get the time in words</p>
         </v-col>
 
         <v-col cols="12" class="">
@@ -20,11 +20,11 @@
               color="#a9d8fc"
               elevation="5"
               >
-              <h3 class="time-in-numbers"><strong><span class="hours">{{h.val}}</span> : <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span></strong></h3>  
+              <h3 class=""><strong><span class="hours">{{h.val}}</span> : <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span></strong></h3>  
           </v-alert>
-          <v-btn class="mx-2" fab dark color="primary" x-small title="Get current time">
-                <v-icon dark @click="setCurrentTime">mdi-clock-outline</v-icon>
-              </v-btn>
+
+          <v-btn x-small color="primary" dark @click="setCurrentTime">Reset</v-btn>
+
         </v-col>
 
         <v-col cols="12" class="">
@@ -98,7 +98,7 @@ export default {
                 color: "red"
             },
 
-            hourstTicksLabels: this.initTicksLabels(12, 1, 3), // ticks totali, valore iniziale, step
+            hourstTicksLabels: this.initTicksLabels(13, 1, 3), // ticks totali, valore iniziale, step
             minutesTicksLabels: this.initTicksLabels(60, 0, 15), // ticks totali, valore iniziale, step
 
             // contiene tutte le parole per tradurre il tempo numerico in testo
