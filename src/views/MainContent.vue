@@ -15,13 +15,16 @@
         </v-col>
 
         <v-col cols="12" class="">
-          <v-alert class="blue--text time-in-numbers mb-0"
+          <v-alert class="blue--text time-in-numbers mb-0 mr-3"
               dense
               color="#a9d8fc"
               elevation="5"
               >
-              <h3 class="time-in-numbers"><strong><span class="hours">{{h.val}}</span> : <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span></strong></h3>
+              <h3 class="time-in-numbers"><strong><span class="hours">{{h.val}}</span> : <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span></strong></h3>  
           </v-alert>
+          <v-btn class="mx-2" fab dark color="primary" x-small title="Get current time">
+                <v-icon dark @click="setCurrentTime">mdi-clock-outline</v-icon>
+              </v-btn>
         </v-col>
 
         <v-col cols="12" class="">
@@ -84,12 +87,21 @@ export default {
 
     data() {
         return {
-            h: { label: "hrs", val: 6, color: "blue" },
-            m: { label: "min", val: 30, color: "red" },
+            h: {
+                label: "hrs",
+                val: this.getCurrentTime().h, // leggo le ore da sistema
+                color: "blue"
+            },
+            m: {
+                label: "min",
+                val: this.getCurrentTime().m, // leggo i minuti da sistema
+                color: "red"
+            },
 
-            hourstTicksLabels: this.initTicksLabels(12, 1, 3),
-            minutesTicksLabels: this.initTicksLabels(60, 0, 15),
+            hourstTicksLabels: this.initTicksLabels(12, 1, 3), // ticks totali, valore iniziale, step
+            minutesTicksLabels: this.initTicksLabels(60, 0, 15), // ticks totali, valore iniziale, step
 
+            // contiene tutte le parole per tradurre il tempo numerico in testo
             WORDS: [
                 "o' clock",
                 "one",
@@ -127,21 +139,50 @@ export default {
     },
 
     methods: {
+        setCurrentTime() {
+            // DESCRIZIONE:
+            // recupero ore e minuti e li assegno alle mie variabili in data()
+
+            this.h.val = this.getCurrentTime().h;
+            this.m.val = this.getCurrentTime().m;
+        },
+
+        getCurrentTime() {
+            // DESCRIZIONE:
+            // recupero ore e minuti dall'orario di sistema e li ritorno
+            // le ore vengono normalizzate in un formato 1..12 anzichè 0..23
+
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+
+            // trasformo le ore da formato 0-23 a quello 1-12
+            if (hours > 12 || hours == 0) {
+                hours = Math.abs(hours - 12);
+            }
+
+            // ritorno un oggetto con 2 proprietà, ore e minuti
+            return { h: hours, m: minutes };
+        },
+
         initTicksLabels(total, start, step) {
-            // start indica il valore del primo tick
+            // DESCRIZIONE:
+            // start indica il valore del primo tick (1 per le ore, 0 per i minuti)
             // inserisco una label numerica ogni "step" ticks
             // restituisco un array di "total" elementi, dovo ho inserito le label solo per alcuni ticks
-            let minutesTicksLabels = [];
-            for (let index = start; index < total; index++) {
-                if (index % step == 0) {
-                    minutesTicksLabels.push(index);
+
+            let ticksLabels = [];
+            for (let i = start; i < total; i++) {
+                if (i % step == 0) {
+                    ticksLabels.push(i);
                 } else {
-                    minutesTicksLabels.push("");
+                    ticksLabels.push("");
                 }
             }
-            return minutesTicksLabels;
+            return ticksLabels;
         },
         timeInWords(h, m) {
+            // DESCRIZIONE:
             // sostanzialmente il formato dell'ora in parole e' il seguente:
             // MINUTI + UNITA' + PREPOSIZIONE + ORA,
             // fa eccezione il caso in cui i minuti sono uguali a zero, dove il formato diventa:
