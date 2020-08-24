@@ -1,84 +1,84 @@
 html {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .img-rounded {
-    border-radius: 100%;
+  border-radius: 100%;
 }
 
 .clock-img {
-    height: 150px;
+  height: 150px;
 }
 
 .hours {
-    color: $secondary-color;
+  color: $secondary-color;
 }
 .minutes {
-    color: red;
+  color: red;
 }
 
 .time-in-words {
-    height: 88px;
-    width: 290px;
-    display: inline-flex;
-    justify-content: center;
+  height: 88px;
+  width: 290px;
+  display: inline-flex;
+  justify-content: center;
 }
 .time-in-numbers {
-    display: inline-block;
-    padding: 2px 3px;
-    min-width: 80px;
-    margin-left: 73px;
+  display: inline-block;
+  padding: 2px 3px;
+  min-width: 80px;
+  margin-left: 73px;
 }
 
 .my-button {
-    color: $white-color;
-    font-weight: bold;
-    text-transform: capitalize;
-    transition: all 0.5s ease-out;
+  color: $white-color;
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: all 0.5s ease-out;
 
-    &:hover {
-        color: $primary-color;
-        cursor: pointer;
-    }
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
 }
 
 .my-link {
-    color: $white-color;
-    text-decoration: none;
-    transition: all 0.5s ease-out;
+  color: $white-color;
+  text-decoration: none;
+  transition: all 0.5s ease-out;
 
-    &:hover {
-        color: $primary-color;
-    }
+  &:hover {
+    color: $primary-color;
+  }
 
-    &.router-link-exact-active {
-        color: $primary-color;
-        cursor: default;
-    }
+  &.router-link-exact-active {
+    color: $primary-color;
+    cursor: default;
+  }
 }
 
 // --------------------------- TRANSITIONs -----------------------------------
 // transizione in ingresso, per apparire gradualmente
 .fade-enter-active {
-    transition: opacity 1.5s;
+  transition: opacity 1.5s;
 }
 .fade-enter {
-    opacity: 0;
+  opacity: 0;
 }
 
 // transizione in uscita, per scomparire gradualmente
 .fade-leave-active:not(.game-over) {
-    transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 
 @media screen and (max-width: 768px) {
-    h1 {
-        font-size: 24px;
-    }
-    .clock-img {
-        height: 75px;
-    }
+  h1 {
+    font-size: 24px;
+  }
+  .clock-img {
+    height: 75px;
+  }
 }

@@ -1,83 +1,77 @@
 <template>
     <v-container class="main-content">
-      <v-row class="text-center">
-        <v-col cols="12" class="pt-0 pb-0">
-          <v-img
-            :src="require('../assets/clock.png')"
-            class="clock-img"
-            contain
-          />
-        </v-col>
+        <v-row class="text-center">
+            <v-col cols="12" class="pt-0 pb-0">
+                <v-img :src="require('../assets/clock.png')" class="clock-img" contain />
+            </v-col>
 
-        <v-col cols="12" class=" blue--text">
-          <h1 class="font-weight-bold">Welcome to Vuetify-Clock</h1>
-          <p class="subheading font-weight-bold mb-0 red--text">Get the time in words</p>
-        </v-col>
+            <v-col cols="12" class="blue--text">
+                <h1 class="font-weight-bold">Welcome to Vuetify-Clock</h1>
+                <p class="subheading font-weight-bold mb-0 red--text">Get the time in words</p>
+            </v-col>
 
-        <v-col cols="12" class="">
-          <v-alert class="blue--text time-in-numbers mb-0 mr-3"
-              dense
-              color="#a9d8fc"
-              elevation="5"
-              >
-              <h3 class=""><strong><span class="hours">{{h.val}}</span> : <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span></strong></h3>  
-          </v-alert>
+            <v-col cols="12" class>
+                <v-alert
+                    class="blue--text time-in-numbers mb-0 mr-3"
+                    dense
+                    color="#a9d8fc"
+                    elevation="5"
+                >
+                    <h3 class>
+                        <strong>
+                            <span class="hours">{{h.val}}</span> :
+                            <span class="minutes">{{m.val>9 ? m.val : '0' + m.val}}</span>
+                        </strong>
+                    </h3>
+                </v-alert>
 
-          <v-btn x-small color="primary" dark @click="setCurrentTime">Reset</v-btn>
+                <v-btn x-small color="primary" dark @click="setCurrentTime">Reset</v-btn>
+            </v-col>
 
-        </v-col>
+            <v-col cols="12" class>
+                <v-alert class="blue--text time-in-words mb-0" dense color="#a9d8fc" elevation="5">
+                    <h2>{{ timeInWords(h.val, m.val) }}</h2>
+                </v-alert>
+            </v-col>
 
-        <v-col cols="12" class="">
-          <v-alert class="blue--text time-in-words mb-0"
-              dense
-              color="#a9d8fc"
-              elevation="5"
-              >
-                <h2>{{ timeInWords(h.val, m.val) }}</h2>
-          </v-alert>
-        </v-col>
+            <v-col cols="12" class="mt-8 mb-4">
+                <v-card flat color="transparent">
+                    <v-slider
+                        v-model="h.val"
+                        :label="h.label"
+                        thumb-label="always"
+                        :thumb-color="h.color"
+                        :thumb-size="h.size"
+                        min="1"
+                        max="12"
+                        inverse-label
+                        ticks="always"
+                        tick-size="4"
+                        :tick-labels="hourstTicksLabels"
+                    ></v-slider>
+                </v-card>
+            </v-col>
 
-        <v-col cols="12" class="mt-8 mb-4">
-            <v-card flat color="transparent"> 
-                <v-slider 
-                  v-model="h.val"
-                  :label="h.label"
-                  thumb-label="always"
-                  :thumb-color="h.color"
-                  :thumb-size="h.size"
-                  min="1"
-                  max="12"
-                  inverse-label
-                  ticks="always"
-                  tick-size="4"
-                  :tick-labels="hourstTicksLabels"
-
-                ></v-slider>
-            </v-card>
-        </v-col>
-
-        <v-col cols="12" class="mb-10">
-            <v-card flat color="transparent">
-              <v-slider 
-                v-model="m.val"
-                :label="m.label"
-                thumb-label="always"
-                :thumb-color="m.color"
-                :thumb-size="m.size"
-                inverse-label
-                color="red"
-                track-color="red"
-                min="0"
-                max="59"
-                ticks="always"
-                tick-size="4"
-                :tick-labels="minutesTicksLabels"
-
-              ></v-slider>
-            </v-card>
-        </v-col>
-
-      </v-row>
+            <v-col cols="12" class="mb-10">
+                <v-card flat color="transparent">
+                    <v-slider
+                        v-model="m.val"
+                        :label="m.label"
+                        thumb-label="always"
+                        :thumb-color="m.color"
+                        :thumb-size="m.size"
+                        inverse-label
+                        color="red"
+                        track-color="red"
+                        min="0"
+                        max="59"
+                        ticks="always"
+                        tick-size="4"
+                        :tick-labels="minutesTicksLabels"
+                    ></v-slider>
+                </v-card>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
@@ -90,12 +84,12 @@ export default {
             h: {
                 label: "hrs",
                 val: this.getCurrentTime().h, // leggo le ore da sistema
-                color: "blue"
+                color: "blue",
             },
             m: {
                 label: "min",
                 val: this.getCurrentTime().m, // leggo i minuti da sistema
-                color: "red"
+                color: "red",
             },
 
             hourstTicksLabels: this.initTicksLabels(13, 1, 3), // ticks totali, valore iniziale, step
@@ -133,8 +127,8 @@ export default {
                 "twenty seven",
                 "twenty eight",
                 "twenty nine",
-                "half"
-            ]
+                "half",
+            ],
         };
     },
 
@@ -233,8 +227,8 @@ export default {
                 // tutti gli altri 59 casi possibili per i differenti valori dei minuti
                 return this.WORDS[m] + unit + prep + this.WORDS[h];
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

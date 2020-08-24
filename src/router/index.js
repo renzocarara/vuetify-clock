@@ -6,27 +6,26 @@ import MainContent from "../views/MainContent.vue";
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: "/",
-        name: "MainContent",
-        component: MainContent,
-    },
-    {
-        path: "/info",
-        name: "Info",
-        // component: Info,
+  {
+    path: "/",
+    name: "MainContent",
+    component: MainContent,
+  },
+  {
+    path: "/info",
+    name: "Info",
+    // component: Info,
 
-        component: () =>
-            import(/* webpackChunkName: "info" */ "../views/Info.vue"),
-    },
+    component: () => import(/* webpackChunkName: "info" */ "../views/Info.vue"),
+  },
 ];
 
 const router = new VueRouter({
-    mode: "history",
-    // NOTA: la riga qui sotto è importante quando si fa il deploy dell'appliczione, per settare il path di root corretto
-    // BASE_URL - corresponds to the publicPath option in vue.config.js and is the base path your app is deployed at.
-    base: process.env.BASE_URL,
-    routes,
+  mode: "history",
+  // NOTA: la riga qui sotto è importante quando si fa il deploy dell'appliczione, per settare il path di root corretto
+  // BASE_URL - corresponds to the publicPath option in vue.config.js and is the base path your app is deployed at.
+  base: process.env.BASE_URL,
+  routes,
 });
 
 export default router;
